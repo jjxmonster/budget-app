@@ -11,7 +11,7 @@ import GlobalStyles from './index.css';
 
 import theme from 'themes/theme'
 
-import { Navigation, Wrapper, LoadingIndicator } from 'components'
+import { Navigation, Wrapper, LoadingIndicator, Button, HomePage } from 'components'
 
 function App () {
   const { i18n } = useTranslation();
@@ -25,16 +25,16 @@ function App () {
         ] }
           RightElement={ (
             <div>
-              <button onClick={ () => i18n.changeLanguage('pl') } >pl</button>
-              <button onClick={ () => i18n.changeLanguage('en') } >en</button>
+              <Button variant="regular" onClick={ () => i18n.changeLanguage('pl') } >pl</Button>
+              <Button variant="regular" onClick={ () => i18n.changeLanguage('en') } >en</Button>
             </div>
           ) }
         />
         <Wrapper>
           <Switch>
             <Route path="/" exact>
-              Homepage
-          </Route>
+              <HomePage />
+            </Route>
             <Route path="/budget">
               Budget Page
           </Route>
