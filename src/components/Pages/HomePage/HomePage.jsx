@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { ReactComponent as Image } from '../../images/budget.svg'
-import { HomePageWrapper, Title, ImageWrapper, Footer } from './Homepage.css'
+import { ReactComponent as Image } from '../../../images/budget.svg'
+import { HomePageWrapper, Title, ImageWrapper } from './Homepage.css'
 import { useTranslation } from 'react-i18next';
 
 import { ImageAnimations } from './ImageAnimations'

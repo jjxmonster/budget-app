@@ -4,7 +4,7 @@ import {
 
     BUDGET_GET,
     BUDGET_GET_REQUEST,
-    BUDGET_GET_SUCCES,
+    BUDGET_GET_SUCCESS,
     BUDGET_GET_FAILURE,
     BUDGETED_CATEGORIES_GET_REQUEST,
     BUDGETED_CATEGORIES_GET_SUCCESS,
@@ -12,7 +12,7 @@ import {
 } from 'data/constants'
 
 const initialState = {
-    loadingState:{},
+    loadingState:null,
     budget:{},
     budgetCategories: []
 }
@@ -29,7 +29,7 @@ const Budget = (state = initialState,action) => {
                     [action.type]: LOADING_STATES.LOADING,
                 }
             }
-        case BUDGET_GET_SUCCES:
+        case BUDGET_GET_SUCCESS:
             delete newLoadingState.BUDGET_GET_REQUEST
             return{
                 ...state,
@@ -54,14 +54,14 @@ const Budget = (state = initialState,action) => {
                 }
             }
         case BUDGETED_CATEGORIES_GET_SUCCESS:
-            delete newLoadingState.BUDGET_GET_REQUEST
+            delete newLoadingState.BUDGETED_CATEGORIES_GET_REQUEST
             return{
                 ...state,
                 budgetCategories: action.payload,
                 loadingState:newLoadingState
             }
             case BUDGETED_CATEGORIES_GET_FAILURE:
-                delete newLoadingState.BUDGET_GET_REQUEST
+                delete newLoadingState.BUDGETED_CATEGORIES_GET_REQUEST
                 return{
                     ...state,
                     budgetCategories: [],
