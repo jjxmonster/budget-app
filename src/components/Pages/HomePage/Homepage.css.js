@@ -13,7 +13,7 @@ export const Title = styled.div`
     justify-content:center;
     align-items:center;
     font-size:3em;
-    color:${({ theme }) => theme.colors.red.normal};
+    color:${({ theme }) => theme.colors.pink.normal};
 `
 export const ImageWrapper = styled.div`
     flex:5;

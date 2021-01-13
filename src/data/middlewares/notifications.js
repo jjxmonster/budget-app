@@ -1,4 +1,6 @@
-import { toast } from 'react-toastify'
+import {
+    toast
+} from 'react-toastify'
 
 
 const notificationsMiddleware = () => next => action => {

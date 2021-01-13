@@ -50,13 +50,16 @@ const BudgetTransactionList = () => {
             transaction => new Date(transaction.date).getUTCDate()
         ),[filteredTransactionsBySelectedParentCategory])
       
+    const handleClick = (transaction) => {
+        console.log(transaction)
+    }
     return (  
         <List>
             {Object.entries(groupedTransactions).map(([key, transactions])=>(
                 <li key={key}>
                     <ul>
                         {transactions.map(transaction => (
-                            <ListItem key={transaction.id}>
+                            <ListItem onClick={()=>handleClick(transaction)} key={ transaction.id }>
                                 <div>{transaction.description}</div>
                                 <div>{formatCurrency(transaction.amount, i18next.language)}</div>
                                 <div>{formatDate(transaction.date)}</div>

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const List = styled.ul`
   > li + li {
-    margin-top: ${({ theme }) => theme.spacing.xs}px;
+    margin-top: ${({ theme }) => theme.spacing.sm}px;
   }
 
   li {
@@ -11,11 +11,11 @@ export const List = styled.ul`
 `;
 
 export const ListItem = styled.li`
-  border: 1px solid ${({ theme }) => theme.colors.gray.dark};
-  padding: ${({ theme }) => theme.spacing.xs}px;
+  border: 1px solid ${({ theme }) => theme.colors.gray.normal};
+  padding: ${({ theme }) => theme.spacing.sm}px;
   display: flex;
   justify-content: space-between;
-
+  color:#de63ab;
   > *:nth-child(1) {
     flex: 4;
   }

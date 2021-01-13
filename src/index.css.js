@@ -3,7 +3,11 @@ import {normalize} from 'styled-normalize'
 
 export default createGlobalStyle`
   ${normalize}
-
+  
+  body{
+    background-color:#2d2d2d;
+    font-family: 'Open Sans', sans-serif;
+  }
   ul{
     list-style:none;
     margin:0;

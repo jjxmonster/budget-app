@@ -17,8 +17,11 @@ export const Content = styled.div`
   background: #fff;
   position: absolute;
   margin: auto;
-  width: 300px;
-  height: 300px;
+  width: 500px;
+  height: 500px;
+  display:flex;
+  justify-content:center;
+  background-color: ${({ theme }) => theme.colors.gray.normal};
   box-shadow: ${({ theme }) => `0 5px 10px 2px ${theme.colors.gray.dark}`};
   padding: 20px;
   text-align: center;

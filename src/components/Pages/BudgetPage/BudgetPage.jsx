@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Switch, Route, useHistory } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import { fetchBudget, fetchBudgetedCategories, addTransaction } from 'data/actions/budget.actions'
 import { fetchAllCategories } from 'data/actions/common.actions.js';
@@ -17,6 +18,7 @@ import AddTransactionForm from './AddTransactionForm'
 const BudgetPage = () => {
 
     const history = useHistory()
+    const { t } = useTranslation()
 
     const budgetDispatch = useDispatch()
     const budget = useSelector(store => store.budget.budget)
@@ -60,7 +62,7 @@ const BudgetPage = () => {
                 <section>
                     { isLoaded ? (
                         <>
-                            <Button to="/budget/transactions/new">Add new transaction</Button>
+                            <Button to="/budget/transactions/new">{ t('Add new transaction') }</Button>
                             <BudgetTransactionList />
                         </>
                     ) : <LoadingIndicator /> }
