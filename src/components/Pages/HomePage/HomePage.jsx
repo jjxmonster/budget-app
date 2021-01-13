@@ -11,7 +11,7 @@ const HomePage = () => {
 
     useEffect(() => {
         ImageAnimations()
-    }, [])
+    })
 
     return (
         <HomePageWrapper>

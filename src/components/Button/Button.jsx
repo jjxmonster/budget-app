@@ -13,7 +13,6 @@ const Button = ({ variant, children, ...props }) => {
             case 'regular':
                 return RegularButton;
             default:
-            case 'regular':
                 return RegularButton;
         }
     }, [variant]);

@@ -8,11 +8,14 @@ import {
 import { useTranslation } from 'react-i18next';
 
 import GlobalStyles from './index.css';
-
 import theme from 'themes/theme'
 
 import { Navigation, Wrapper, LoadingIndicator, Button, HomePage, BudgetPage } from 'components'
 
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure()
 
 function App () {
 

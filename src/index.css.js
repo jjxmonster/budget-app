@@ -12,4 +12,9 @@ export default createGlobalStyle`
       margin-left:${({theme})=>theme.spacing.xs}px;
     }
   }
+  *{
+    padding:0;
+    margin:0;
+    box-sizing:border-box;
+  }
 `
