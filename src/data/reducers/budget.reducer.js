@@ -13,7 +13,8 @@ import {
     BUDGET_TRANSACTION_ADD_REQUEST,
     BUDGET_TRANSACTION_ADD_SUCCESS,
 
-    SET_SELECTED_PARENT_CATEGORY_ID
+    SET_SELECTED_PARENT_CATEGORY_ID,
+    SET_SELECTED_TRANSACTION_ID,
 } from 'data/constants'
 
 const initialState = {
@@ -21,6 +22,7 @@ const initialState = {
     budget:{},
     budgetCategories: [],
     selectedParentCategoryId: undefined,
+    selectedTransactionId:undefined,
 }
 
 const Budget = (state = initialState,action) => {
@@ -100,6 +102,12 @@ const Budget = (state = initialState,action) => {
                 return {
                     ...state,
                     selectedParentCategoryId: action.payload
+                }
+            
+            case SET_SELECTED_TRANSACTION_ID:
+                return {
+                    ...state,
+                    selectedTransactionId: action.payload
                 }
         
         default :

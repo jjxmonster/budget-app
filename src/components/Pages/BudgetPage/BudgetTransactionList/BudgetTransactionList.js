@@ -1,5 +1,6 @@
-import React, {useMemo} from 'react';
-import { useSelector } from 'react-redux';
+import React, { useMemo } from 'react';
+import { Link } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux';
 import {  groupBy } from 'lodash'
 
 import { formatCurrency, formatDate } from 'themes'
@@ -7,8 +8,12 @@ import { formatCurrency, formatDate } from 'themes'
 import { List, ListItem } from './BudgetTransactionList.css'
 import i18next from 'i18next';
 
+import { selectTransaction } from 'data/actions/budget.actions.js'
+
 
 const BudgetTransactionList = () => {
+
+    const dispatch = useDispatch()
 
     const transactions = useSelector(store => store.budget.budget.transactions)
     const selectedParentCategoryId = useSelector(store => store.budget.selectedParentCategoryId)
@@ -50,23 +55,23 @@ const BudgetTransactionList = () => {
             transaction => new Date(transaction.date).getUTCDate()
         ),[filteredTransactionsBySelectedParentCategory])
       
-    const handleClick = (transaction) => {
-        console.log(transaction)
-    }
+    
     return (  
         <List>
             {Object.entries(groupedTransactions).map(([key, transactions])=>(
                 <li key={key}>
                     <ul>
-                        {transactions.map(transaction => (
-                            <ListItem onClick={()=>handleClick(transaction)} key={ transaction.id }>
-                                <div>{transaction.description}</div>
-                                <div>{formatCurrency(transaction.amount, i18next.language)}</div>
-                                <div>{formatDate(transaction.date)}</div>
-                                <div>
-                                    {(allCategories.find(category => category.id === transaction.categoryId) || {}).name}
-                                </div>
-                            </ListItem>
+                        { transactions.map(transaction => (
+                            <Link key={ transaction.id } to={`/budget/transactions/${transaction.id}`}>
+                                <ListItem onClick={()=> dispatch(selectTransaction(transaction.id))} >
+                                    <div>{transaction.description}</div>
+                                    <div>{formatCurrency(transaction.amount, i18next.language)}</div>
+                                    <div>{formatDate(transaction.date)}</div>
+                                    <div>
+                                        {(allCategories.find(category => category.id === transaction.categoryId) || {}).name}
+                                    </div>
+                                </ListItem>
+                            </Link>
                         ))}
                     </ul>
                 </li>

@@ -48,6 +48,7 @@ function App () {
           </Switch>
         </Wrapper>
       </Router>
+
     </>
   );
 }

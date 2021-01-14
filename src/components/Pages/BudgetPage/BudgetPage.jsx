@@ -13,6 +13,7 @@ import BudgetCategoryList from './BudgetCategoryList/index.js';
 import BudgetTransactionList from './BudgetTransactionList/index.js'
 import ListErrorView from './ErrorView'
 import AddTransactionForm from './AddTransactionForm'
+import TransactionModal from './TransactionModal'
 
 
 const BudgetPage = () => {
@@ -39,7 +40,7 @@ const BudgetPage = () => {
 
     )
 
-    if (isLoaded === true && !budget.transactions && !allCategories) {
+    if (isLoaded === true && !budget.transactions) {
         return <ListErrorView />
     }
 
@@ -76,6 +77,11 @@ const BudgetPage = () => {
                             groupCategoriesBy="parentCategory.name"
                             onSubmit={ handleSubmitAddTransaction }
                         />
+                    </Modal>
+                </Route>
+                <Route path="/budget/transactions/:id">
+                    <Modal>
+                        <TransactionModal />
                     </Modal>
                 </Route>
             </Switch>

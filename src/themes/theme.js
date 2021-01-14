@@ -17,6 +17,7 @@ export default {
       normal: 'rgb(165, 61, 54)',
     },
     pink: {
+      light:'#ff97b7',
       normal: '#da2e76',
     },
   },
