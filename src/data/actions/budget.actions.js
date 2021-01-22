@@ -9,7 +9,7 @@ import {
 import API from 'data/fetch'
 
 export const fetchBudget = (id) => {
-    const promise = API.budget.fetchBudget(id);
+    const promise = API.budget.fetchBudget({id});
 
     return {
         type: BUDGET_GET,

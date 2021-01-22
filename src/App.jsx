@@ -6,6 +6,7 @@ import {
   Route,
 } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 import GlobalStyles from './index.css';
 import theme from 'themes/theme'
@@ -56,12 +57,23 @@ function App () {
 
 
 const RootApp = () => {
+
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        suspense: true,
+      }
+    },
+  })
   return (
-    <ThemeProvider theme={ theme }>
-      <React.Suspense fallback={ <LoadingIndicator /> }>
-        <App />
-      </React.Suspense>
-    </ThemeProvider>
+    <QueryClientProvider client={ queryClient }>
+      <ThemeProvider theme={ theme }>
+        <React.Suspense fallback={ <LoadingIndicator /> }>
+          <App />
+        </React.Suspense>
+      </ThemeProvider>
+    </QueryClientProvider>
+
   );
 }
 

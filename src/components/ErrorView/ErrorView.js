@@ -2,16 +2,12 @@ import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next'
 import gsap from 'gsap'
 
-import { ReactComponent as ErrorImage } from '../../../../images/server_down.svg'
+import { ReactComponent as ErrorImage } from '../../images/server_down.svg'
 import styled from 'styled-components'
 
 const ErrorPageWrapper = styled.div`
-    max-width:960px;
-    height:70vh;
-    position:absolute;
-    left:0;
-    right:0;
-    margin:auto;
+    width:400px;
+    height:350px;
     display:flex;
     flex-direction:column;
 `
@@ -22,7 +18,7 @@ const ErrorTitle = styled.h1`
     color:${({ theme }) => theme.colors.red.normal};
     background:${({ theme }) => theme.colors.gray.light};
     text-align:center;
-    font-size:${({ theme }) => theme.spacing.xs - 1}vh;
+    font-size:${({ theme }) => theme.spacing.xs - 2.5}vh;
     border-radius:0 0 20px 20px ;
 `
 
@@ -35,7 +31,7 @@ const ErrorAnimations = () => {
     timeLine.to("#hand", {rotate:-10,repeat: -1, yoyo:true,duration:1},"start")
 } 
 
-const ListErrorView = () => {
+const ErrorView = () => {
 
     const {t} = useTranslation()
 
@@ -60,4 +56,4 @@ const ListErrorView = () => {
     );
 }
 
-export default ListErrorView;
+export default ErrorView;

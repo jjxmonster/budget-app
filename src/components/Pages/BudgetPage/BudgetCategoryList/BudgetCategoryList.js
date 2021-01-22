@@ -1,8 +1,11 @@
 import React, {useRef, useMemo, useCallback} from 'react';
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import 'styled-components/macro'
 import { groupBy } from 'lodash'
 import { useTranslation } from 'react-i18next'
+import { useQuery } from "react-query";
+
+import API from 'data/fetch'
 
 import { ToggleableList } from 'components'
 import ParentCategory from './ParentCategory'
@@ -10,14 +13,15 @@ import CategoryItem from './CategoryItem'
 import { selectParentCategory } from 'data/actions/budget.actions.js';
 
 const BudgetCategoryList = () => {
+    
+    const { data: budget } = useQuery('budget', () => API.budget.fetchBudget({id:1}));
+    const { data: allCategories } = useQuery('allCategories', () => API.common.fetchAllCategories());
+    const { data: budgetedCategories } = useQuery('budgetedCategories', () => API.budget.fetchBudgetedCategories({ id: 1 }));
+    
 
     const { t } = useTranslation()
     const dispatch = useDispatch()
-    const handleClickParentCategoryRef = useRef(null)
-
-    const budgetedCategories = useSelector(store => store.budget.budgetCategories);
-    const allCategories = useSelector(store => store.common.allCategories);
-    const budget = useSelector(store => store.budget.budget)    
+    const handleClickParentCategoryRef = useRef(null)    
   
     const budgetCategoriesByParent = useMemo(() => groupBy(
         budgetedCategories,

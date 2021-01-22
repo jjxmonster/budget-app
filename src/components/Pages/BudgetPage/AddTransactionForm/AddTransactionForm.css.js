@@ -32,5 +32,5 @@ export const ErrorSpan = styled.span`
 
 export const FormTitle = styled.h2`
     font-size:3vh;
-    color: ${({ theme }) => theme.colors.pink.normal}
+    // color: ${({ theme }) => theme.colors.pink.normal}
 `
