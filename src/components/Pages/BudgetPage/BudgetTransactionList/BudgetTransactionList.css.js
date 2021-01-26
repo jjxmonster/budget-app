@@ -15,7 +15,7 @@ export const ListItem = styled.li`
   padding: ${({ theme }) => theme.spacing.sm}px;
   display: flex;
   justify-content: space-between;
-  color:#de63ab;
+  color: #de63ab;
   > *:nth-child(1) {
     flex: 4;
   }

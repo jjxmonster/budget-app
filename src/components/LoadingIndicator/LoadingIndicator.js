@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, {keyframes} from 'styled-components'
+import styled, { keyframes } from 'styled-components';
 
 const Flip = keyframes`
   0%, 100% {
@@ -15,30 +15,29 @@ const Flip = keyframes`
   100% {
     transform: rotateY(3600deg);
   }
-`
-
+`;
 
 const Root = styled.div`
-    display: inline-block;
-    transform: translateZ(1px);
-  `
+  display: inline-block;
+  transform: translateZ(1px);
+`;
 
 const Content = styled.div`
-    display: inline-block;
-    width: 64px;
-    height: 64px;
-    margin: 8px;
-    border-radius: 50%;
-    background: ${({theme})=>theme.colors.gray.normal};
-    animation: ${Flip} 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
-`
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  background: ${({ theme }) => theme.colors.gray.normal};
+  animation: ${Flip} 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+`;
 
 const LoadingIndicator = () => {
-    return ( 
-        <Root>
-            <Content/>
-        </Root>
-     );
-}
- 
+  return (
+    <Root>
+      <Content />
+    </Root>
+  );
+};
+
 export default LoadingIndicator;
