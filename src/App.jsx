@@ -1,81 +1,88 @@
 import React from 'react';
-import { ThemeProvider } from 'styled-components'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from "react-router-dom";
+import { ThemeProvider } from 'styled-components';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 import GlobalStyles from './index.css';
-import theme from 'themes/theme'
+import theme from 'themes/theme';
 
-import { Navigation, Wrapper, LoadingIndicator, Button, HomePage, BudgetPage } from 'components'
+import {
+   Navigation,
+   Wrapper,
+   LoadingIndicator,
+   Button,
+   HomePage,
+   BudgetPage,
+} from 'components';
 
-import { toast } from 'react-toastify'
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-toast.configure()
+toast.configure();
 
-function App () {
+function App() {
+   const { i18n } = useTranslation();
 
-  const { i18n } = useTranslation();
-
-
-  return (
-    <>
-      <GlobalStyles />
-      <Router>
-        <Navigation items={ [
-          { content: 'Homepage', to: "/" },
-          { content: 'Budget', to: "/budget" }
-        ] }
-          RightElement={ (
-            <div>
-              <Button variant="regular" onClick={ () => i18n.changeLanguage('pl') } >pl</Button>
-              <Button variant="regular" onClick={ () => i18n.changeLanguage('en') } >en</Button>
-            </div>
-          ) }
-        />
-        <Wrapper>
-          <Switch>
-            <Route path="/" exact>
-              <HomePage />
-            </Route>
-            <Route path="/budget">
-              <BudgetPage />
-            </Route>
-          </Switch>
-        </Wrapper>
-      </Router>
-
-    </>
-  );
+   return (
+      <>
+         <GlobalStyles />
+         <Router>
+            <Navigation
+               items={[
+                  { content: 'Homepage', to: '/' },
+                  { content: 'Budget', to: '/budget' },
+               ]}
+               RightElement={
+                  <div>
+                     <Button
+                        variant='regular'
+                        onClick={() => i18n.changeLanguage('pl')}
+                     >
+                        pl
+                     </Button>
+                     <Button
+                        variant='regular'
+                        onClick={() => i18n.changeLanguage('en')}
+                     >
+                        en
+                     </Button>
+                  </div>
+               }
+            />
+            <Wrapper>
+               <Switch>
+                  <Route path='/' exact>
+                     <HomePage />
+                  </Route>
+                  <Route path='/budget'>
+                     <BudgetPage />
+                  </Route>
+               </Switch>
+            </Wrapper>
+         </Router>
+      </>
+   );
 }
-
-
 
 const RootApp = () => {
-
-  const queryClient = new QueryClient({
-    defaultOptions: {
-      queries: {
-        suspense: true,
-      }
-    },
-  })
-  return (
-    <QueryClientProvider client={ queryClient }>
-      <ThemeProvider theme={ theme }>
-        <React.Suspense fallback={ <LoadingIndicator /> }>
-          <App />
-        </React.Suspense>
-      </ThemeProvider>
-    </QueryClientProvider>
-
-  );
-}
+   const queryClient = new QueryClient({
+      defaultOptions: {
+         queries: {
+            suspense: true,
+            refetchOnWindowFocus: false,
+         },
+      },
+   });
+   return (
+      <QueryClientProvider client={queryClient}>
+         <ThemeProvider theme={theme}>
+            <React.Suspense fallback={<LoadingIndicator />}>
+               <App />
+            </React.Suspense>
+         </ThemeProvider>
+      </QueryClientProvider>
+   );
+};
 
 export default RootApp;
-

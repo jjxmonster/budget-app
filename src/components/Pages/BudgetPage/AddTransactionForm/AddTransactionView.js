@@ -1,48 +1,46 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux'
-import { useQuery } from 'react-query';
+import { useQuery, useMutation, useQueryClient } from 'react-query';
 
-import { addTransaction } from 'data/actions/budget.actions'
-import API from 'data/fetch'
+import API from 'data/fetch';
 
-import AddTransactionForm from './AddTransactionForm'
+import AddTransactionForm from './AddTransactionForm';
 
 const AddTransactionView = () => {
+   const history = useHistory();
+   const queryClient = useQueryClient();
 
-    const history = useHistory()
-    const budgetDispatch = useDispatch() 
-    
+   const { mutate } = useMutation(API.budget.addTransaction);
 
-    const { data: budget } = useQuery('budget', () => API.budget.fetchBudget({ id: 1 }));
-    const { data: allCategories } = useQuery('allCategories', () => API.common.fetchAllCategories());
+   const { data: budget } = useQuery('budget', () =>
+      API.budget.fetchBudget({ id: 1 })
+   );
+   const { data: allCategories } = useQuery('allCategories', () =>
+      API.common.fetchAllCategories()
+   );
 
-    const handleSubmitAddTransaction = (values) =>
-     {
-        budgetDispatch(addTransaction({
-            budgetId:
-    budget.id,
-            data:
-                
-                
-                
-                values})).then(() =>
-        {
+   const handleSubmitAddTransaction = values => {
+      mutate(
+         {
+            budgetId: budget.id,
+            data: values,
+         },
+         {
+            onSuccess: async () => {
+               await queryClient.refetchQueries(['budget'], { active: true });
+               history.goBack();
+            },
+         }
+      );
+   };
 
-            history.goBack()
-        }
-        )
-    }
+   return (
+      <AddTransactionForm
+         categories={allCategories}
+         groupCategoriesBy='parentCategory.name'
+         onSubmit={handleSubmitAddTransaction}
+      />
+   );
+};
 
-    return ( 
-            <AddTransactionForm
-            categories={ allCategories
-                
-            }
-        groupCategoriesBy="parentCategory.name"
-                onSubmit={ handleSubmitAddTransaction }
-            />
-     );
-}
- 
 export default AddTransactionView;

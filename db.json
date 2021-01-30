@@ -160,6 +160,22 @@
       "categoryId": "1",
       "budgetId": "1",
       "id": "7aCS7-T"
+    },
+    {
+      "description": "burger z kruwki ",
+      "amount": 25,
+      "categoryId": "8",
+      "date": "2021-01-10",
+      "budgetId": "1",
+      "id": "iigtOcc"
+    },
+    {
+      "description": "burger z makdonald ",
+      "amount": 12,
+      "categoryId": "8",
+      "date": "2021-01-10",
+      "budgetId": "1",
+      "id": "sTkAIqm"
     }
   ]
 }
