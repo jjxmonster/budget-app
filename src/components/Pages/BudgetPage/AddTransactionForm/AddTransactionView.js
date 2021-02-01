@@ -1,6 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useQuery, useMutation, useQueryClient } from 'react-query';
+import { toast } from 'react-toastify';
 
 import API from 'data/fetch';
 
@@ -29,6 +30,7 @@ const AddTransactionView = () => {
             onSuccess: async () => {
                await queryClient.refetchQueries(['budget'], { active: true });
                history.goBack();
+               toast.success('Transaction added successfully');
             },
          }
       );

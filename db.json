@@ -100,82 +100,34 @@
   "budgets": [
     {
       "id": "1",
-      "name": "April",
+      "name": "February",
       "totalAmount": 2400
     }
   ],
   "transactions": [
     {
-      "description": "Internet provider",
-      "amount": 120.47,
-      "date": "2020-12-17",
-      "categoryId": "1",
-      "budgetId": "1",
-      "id": "Wzpe6b0"
-    },
-    {
-      "description": "Burger ",
-      "amount": 20.5,
-      "categoryId": "8",
-      "date": "2021-01-10",
-      "budgetId": "1",
-      "id": "mEgevYK"
-    },
-    {
       "description": "Weekly shopping #1",
-      "amount": 240.24,
+      "amount": 200,
       "categoryId": "5",
-      "date": "2020-11-14",
+      "date": "2021-02-14",
       "budgetId": "1",
-      "id": "JhZnPA1"
+      "id": 1
     },
     {
-      "description": "New React course",
-      "amount": 100,
-      "categoryId": "7",
-      "date": "2020-12-10",
+      "description": "burger",
+      "amount": 21.5,
+      "categoryId": "8",
+      "date": "2021-02-05",
       "budgetId": "1",
-      "id": "j3mqRwJ"
-    },
-    {
-      "description": "Weekly shopping #2",
-      "amount": 124.21,
-      "categoryId": "5",
-      "date": "2020-12-19",
-      "budgetId": "1",
-      "id": "XIDqUAH"
+      "id": 2
     },
     {
       "description": "Mobile phone provider",
-      "amount": 110.44,
+      "amount": 240,
       "categoryId": "2",
-      "date": "2021-01-06",
+      "date": "2021-02-02",
       "budgetId": "1",
-      "id": "znyko06"
-    },
-    {
-      "description": "New internet",
-      "amount": 200.2,
-      "date": "2021-01-15",
-      "categoryId": "1",
-      "budgetId": "1",
-      "id": "7aCS7-T"
-    },
-    {
-      "description": "burger z kruwki ",
-      "amount": 25,
-      "categoryId": "8",
-      "date": "2021-01-10",
-      "budgetId": "1",
-      "id": "iigtOcc"
-    },
-    {
-      "description": "burger z makdonald ",
-      "amount": 12,
-      "categoryId": "8",
-      "date": "2021-01-10",
-      "budgetId": "1",
-      "id": "sTkAIqm"
+      "id": 3
     }
   ]
 }

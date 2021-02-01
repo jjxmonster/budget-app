@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { groupBy } from 'lodash';
-import { useQuery } from 'react-query';
+import { useQuery, useMutation, useQueryClient, useQueries } from 'react-query';
 
 import { formatCurrency, formatDate } from 'themes';
 
@@ -14,6 +14,8 @@ import { selectTransaction } from 'data/actions/budget.actions.js';
 import API from 'data/fetch';
 
 const BudgetTransactionList = () => {
+   const queryClient = useQueryClient();
+
    const { data: budget } = useQuery('budget', () =>
       API.budget.fetchBudget({ id: 1 })
    );
@@ -24,6 +26,8 @@ const BudgetTransactionList = () => {
    const { data: budgetedCategories } = useQuery('budgetedCategories', () =>
       API.budget.fetchBudgetedCategories({ id: 1 })
    );
+
+   const { mutate } = useMutation(API.budget.deleteTransaction);
 
    const dispatch = useDispatch();
 
@@ -74,20 +78,33 @@ const BudgetTransactionList = () => {
       [filteredTransactionsBySelectedParentCategory]
    );
 
+   const deleteTransaction = (e, id) => {
+      e.stopPropagation();
+      mutate(
+         { id: id },
+         {
+            onSuccess: async () => {
+               await queryClient.refetchQueries(['budget'], { active: true });
+            },
+         }
+      );
+   };
+
    return (
       <List>
          {Object.entries(groupedTransactions).map(([key, transactions]) => (
             <li key={key}>
                <ul>
                   {transactions.map(transaction => (
-                     <Link
+                     <ListItem
                         key={transaction.id}
-                        to={`/budget/transactions/${transaction.id}`}
+                        onClick={() =>
+                           dispatch(selectTransaction(transaction.id))
+                        }
                      >
-                        <ListItem
-                           onClick={() =>
-                              dispatch(selectTransaction(transaction.id))
-                           }
+                        <Link
+                           key={transaction.id}
+                           to={`/budget/transactions/${transaction.id}`}
                         >
                            <div>{transaction.description}</div>
                            <div>
@@ -107,8 +124,13 @@ const BudgetTransactionList = () => {
                                  ).name
                               }
                            </div>
-                        </ListItem>
-                     </Link>
+                        </Link>
+                        <div
+                           onClick={e => deleteTransaction(e, transaction.id)}
+                        >
+                           &times;
+                        </div>
+                     </ListItem>
                   ))}
                </ul>
             </li>

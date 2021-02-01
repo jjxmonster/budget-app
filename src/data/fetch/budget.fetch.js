@@ -29,3 +29,9 @@ export const addTransaction = async ({ budgetId, data }) => {
 
    return await response.json();
 };
+
+export const deleteTransaction = async ({ id }) => {
+   await fetch(`${process.env.REACT_APP_API_URL}/transactions/${id}`, {
+      method: 'DELETE',
+   });
+};
